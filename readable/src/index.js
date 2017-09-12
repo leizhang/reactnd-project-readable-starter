@@ -1,8 +1,23 @@
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+// import thunk from 'redux-thunk'
+// import { createLogger } from 'redux-logger'
+// import reducer from './reducers'
+import store from './store/configureStore';
+import { BrowserRouter } from 'react-router-dom';
+import 'semantic-ui-css/semantic.min.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+// const store = configureStore();
+
+ReactDOM.render(
+  <BrowserRouter store={store}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById('root')
+);
