@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-import PostListPage from './pages/PostList';
+import PostListPage from './containers/PostListContainer';
 
 class App extends Component {
   render() {

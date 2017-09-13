@@ -6,7 +6,7 @@ const posts = '/posts';
 const client = axios.create({
   baseURL: 'http://localhost:5001',
   headers: {
-    Authorization: 'dsfdsfdsf',
+    'Authorization': 'dsfdsfdsf',
     'Content-Type': 'application/json',
   },
 });
@@ -28,11 +28,29 @@ export function newPost() {
   };
 }
 
+export function savePost(post) {
+  return dispatch => {
+    return dispatch({
+      type: types.SAVE_POST,
+      payload: client.post(posts, post)
+    })
+  }
+}
+
+export function fetchPost(id) {
+  return dispatch => {
+    return dispatch({
+      type: types.FETCH_POST,
+      payload: client.get(`${posts}/${id}`)
+    })
+  }
+}
+
 export function updatePost(post) {
   return dispatch => {
     dispatch({
       type: types.UPDATE_POST,
-      payload: client.put(`${client.baseURL}/${post.id}`, post),
+      payload: client.put(`${posts}/${post.id}`, post),
     });
   };
 }
@@ -41,7 +59,7 @@ export function deletePost(id) {
   return dispatch => {
     return dispatch({
       type: types.DELETE_POST,
-      payload: client.delete(`${client.baseURL}/${id}`),
+      payload: client.delete(`${posts}/${id}`),
     });
   };
 }

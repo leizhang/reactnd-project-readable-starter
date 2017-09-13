@@ -20,7 +20,7 @@ export default function PostList({ posts, loading, errors, deletePost }) {
       <Message.Content>
         <Message.Header>No Posts Found</Message.Header>
         <p>Add some new posts to get started.</p>
-        <Link to={'/posts/new'} className="ui button primary">
+        <Link to={'/post/new'} className="ui button primary">
           Add New Post
         </Link>
       </Message.Content>
@@ -37,13 +37,11 @@ export default function PostList({ posts, loading, errors, deletePost }) {
     </Message>
   );
 
-  const cards = () => {
-    return posts.map(post => {
-      return <PostRow key={post.id} post={post} deletePost={deletePost} />;
-    });
+  const posttable = () => {
+      return <PostRow posts={posts} deletePost={deletePost} />;
   };
 
-  const postList = <Card.Group>{cards()}</Card.Group>;
+  const postList = <Card.Group>{posttable()}</Card.Group>;
 
   return (
     <div>
