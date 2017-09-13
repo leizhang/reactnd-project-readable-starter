@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Message, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import PostRow from './PostRow';
+import PostTable from './PostTable';
 
 export default function PostList({ posts, loading, errors, deletePost }) {
   const loadingMessage = (
@@ -20,7 +20,7 @@ export default function PostList({ posts, loading, errors, deletePost }) {
       <Message.Content>
         <Message.Header>No Posts Found</Message.Header>
         <p>Add some new posts to get started.</p>
-        <Link to={'/post/new'} className="ui button primary">
+        <Link to={'/posts/new'} className="ui button primary">
           Add New Post
         </Link>
       </Message.Content>
@@ -38,10 +38,10 @@ export default function PostList({ posts, loading, errors, deletePost }) {
   );
 
   const posttable = () => {
-      return <PostRow posts={posts} deletePost={deletePost} />;
+      return <PostTable posts={posts} deletePost={deletePost} />;
   };
 
-  const postList = <Card.Group>{posttable()}</Card.Group>;
+  const postList = posttable();
 
   return (
     <div>

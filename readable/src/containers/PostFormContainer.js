@@ -13,9 +13,9 @@ class PostFormPage extends Component {
   }
 
     componentDidMount = () => {
-      const { id } = this.props.match.params;
-    if(id){
-      this.props.fetchPost(id)
+      const { _id } = this.props.match.params;
+    if(_id){
+      this.props.fetchPost(_id);
     } else {
       this.props.newPost();
     }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-import PostListPage from './containers/PostListContainer';
+import PostListContainer from './containers/PostListContainer';
+import PostFormContainer from "./containers/PostFormContainer";
 
 class App extends Component {
   render() {
@@ -20,9 +21,9 @@ class App extends Component {
             Add Post
           </NavLink>
         </div>
-        <Route exact path="/" component={PostListPage} />
-        {/*<Route path="/contacts/new" component={ContactFormPage}/>*/}
-        {/*<Route path="/contacts/edit/:_id" component={ContactFormPage}/>*/}
+        <Route exact path="/" component={PostListContainer} />
+        <Route path="/posts/new" component={PostFormContainer}/>
+        <Route path="/posts/edit/:_id" component={PostFormContainer}/>
       </Container>
     );
   }

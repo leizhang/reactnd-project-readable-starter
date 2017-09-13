@@ -10,7 +10,7 @@ export default (state = defaultState, action = {}) => {
     case 'FETCH_POSTS_FULFILLED': {
       return {
         ...state,
-        posts: action.payload.data,
+        posts: action.payload.data.filter(item => item.deleted !== "false"),
         loading: false,
         errors: {},
       };
@@ -35,7 +35,7 @@ export default (state = defaultState, action = {}) => {
     case 'NEW_POST': {
       return {
         ...state,
-        post: { },
+        post: {},
       };
     }
 
@@ -59,16 +59,13 @@ export default (state = defaultState, action = {}) => {
       const data = action.payload.response.data;
       // convert feathers error formatting to match client-side error formatting
       const {
-        'name.first': first,
-        'name.last': last,
-        phone,
-        email,
+        title,
+        author,
       } = data.errors;
       const errors = {
         global: data.message,
-        name: { first, last },
-        phone,
-        email,
+        title,
+        author,
       };
       return {
         ...state,
@@ -81,7 +78,7 @@ export default (state = defaultState, action = {}) => {
       return {
         ...state,
         loading: true,
-        post: { name: {} },
+        post: { },
       };
     }
 
@@ -110,20 +107,19 @@ export default (state = defaultState, action = {}) => {
         loading: false,
       };
     }
-    //todo update code
+
     case 'UPDATE_POST_REJECTED': {
       const data = action.payload.response.data;
       const {
-        'name.first': first,
-        'name.last': last,
-        phone,
-        email,
+        id,
+        title,
+        author,
       } = data.errors;
       const errors = {
         global: data.message,
-        name: { first, last },
-        phone,
-        email,
+        id,
+        title,
+        author,
       };
       return {
         ...state,
@@ -136,7 +132,7 @@ export default (state = defaultState, action = {}) => {
       const id = action.payload.data.id;
       return {
         ...state,
-        posts: state.posts.filter(item => item.id !== id),
+        posts: state.posts.filter(item => item.id !== id)
       };
     }
 

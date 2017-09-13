@@ -1,7 +1,8 @@
 import axios from 'axios';
 import * as types from '../constants/ActionTypes';
+import uuid from 'uuid';
 
-const posts = '/posts';
+const url = '/posts';
 
 const client = axios.create({
   baseURL: 'http://localhost:5001',
@@ -15,7 +16,7 @@ export function fetchPosts() {
   return dispatch => {
     dispatch({
       type: types.FETCH_POSTS,
-      payload: client.get(posts),
+      payload: client.get(url),
     });
   };
 }
@@ -23,16 +24,17 @@ export function fetchPosts() {
 export function newPost() {
   return dispatch => {
     dispatch({
-      type: types.NEW_POST,
+      type: types.NEW_POST
     });
   };
 }
 
 export function savePost(post) {
+  post.id = uuid.v4();
   return dispatch => {
     return dispatch({
       type: types.SAVE_POST,
-      payload: client.post(posts, post)
+      payload: client.post(url, post)
     })
   }
 }
@@ -41,25 +43,25 @@ export function fetchPost(id) {
   return dispatch => {
     return dispatch({
       type: types.FETCH_POST,
-      payload: client.get(`${posts}/${id}`)
+      payload: client.get(`${url}/${id}`)
     })
   }
 }
 
 export function updatePost(post) {
   return dispatch => {
-    dispatch({
+    return dispatch({
       type: types.UPDATE_POST,
-      payload: client.put(`${posts}/${post.id}`, post),
+      payload: client.put(`${url}/${post._id}`, post),
     });
   };
 }
 
-export function deletePost(id) {
+export function deletePost(_id) {
   return dispatch => {
     return dispatch({
       type: types.DELETE_POST,
-      payload: client.delete(`${posts}/${id}`),
+      payload: client.delete(`${url}/${_id}`),
     });
   };
 }

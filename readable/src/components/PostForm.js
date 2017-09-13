@@ -3,26 +3,12 @@ import { Form, Grid, Button } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import classnames from 'classnames';
 
-const validate = (values) => {
-  const errors = {};
-  if(!values.title) {
-    errors.title = {
-      message: 'You need fill a title value'
-    }
-  }
-  if(!values.author) {
-    errors.author = {
-      message: "You need fill author's name"
-    }
-  }
-}
-
 class PostForm extends Component {
 
   componentWillReceiveProps = (nextProps) => { // Load post Asynchronously
     const { post } = nextProps;
     if(post.id !== this.props.post.id) { // Initialize form only once
-      this.props.initialize(post)
+      this.props.initialize(post);
     }
   }
 
@@ -41,12 +27,12 @@ class PostForm extends Component {
           <Grid.Column>
             <h1 style={{marginTop:"1em"}}>{post.id ? 'Edit post' : 'Add New post'}</h1>
             <Form onSubmit={handleSubmit} loading={loading}>
-{/*              <Form.Group widths='equal'>
-                <Field name="name.first" type="text" component={this.renderField} label="Title"/>
-                <Field name="name.last" type="text" component={this.renderField} label="Author"/>
-              </Form.Group>*/}
+              <Field name="category" type="text" component={this.renderField} label="Category"/>
               <Field name="title" type="text" component={this.renderField} label="Title"/>
               <Field name="author" type="text" component={this.renderField} label="Author"/>
+              <Field name="body" type="text" component={this.renderField} label="Body"/>
+              <Field name="voteScore" type="number" component={this.renderField} label="Current Score"/>
+              <Field name="timestamp" type="text" component={this.renderField} label="Time"/>
               <Button primary type='submit' disabled={pristine || submitting}>Save</Button>
             </Form>
           </Grid.Column>
@@ -55,4 +41,4 @@ class PostForm extends Component {
   }
 }
 
-export default reduxForm({form: 'post', validate})(PostForm);
+export default reduxForm({form: 'post'})(PostForm);
