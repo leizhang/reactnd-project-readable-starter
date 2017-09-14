@@ -38,10 +38,10 @@ class PostTable extends Component {
       <Table sortable celled fixed>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell sorted={column === 'category' ? direction : null}
+{/*            <Table.HeaderCell sorted={column === 'category' ? direction : null}
                               onClick={this.handleSort('category')}>
               Category
-            </Table.HeaderCell>
+            </Table.HeaderCell>*/}
             <Table.HeaderCell sorted={column === 'title' ? direction : null}
                               onClick={this.handleSort('title')}>
               Title
@@ -50,7 +50,7 @@ class PostTable extends Component {
             <Table.HeaderCell>Body</Table.HeaderCell>
             <Table.HeaderCell sorted={column === 'voteScore' ? direction : 'ascending'}
                               onClick={this.handleSort('voteScore')}>
-              Current Score
+              Score
             </Table.HeaderCell>
             <Table.HeaderCell>Deleted?</Table.HeaderCell>
             <Table.HeaderCell sorted={column === 'timestamp' ? direction : null}
@@ -58,14 +58,13 @@ class PostTable extends Component {
               Timestamp
             </Table.HeaderCell>
             <Table.HeaderCell>
-              &nbsp;
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {_.map(data, ({id, category, title, author, body, timestamp, deleted, voteScore}) => (
             <Table.Row key={id}>
-              <Table.Cell>{category}</Table.Cell>
+{/*              <Table.Cell>{category}</Table.Cell>*/}
               <Table.Cell><Link
                 to={`/posts/view/${id}`
                 }>
