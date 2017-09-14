@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Message, Icon } from 'semantic-ui-react';
+import { Message, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import PostTable from './PostTable';
 
@@ -38,7 +38,7 @@ export default function PostList({ posts, loading, errors, deletePost }) {
   );
 
   const posttable = () => {
-      return <PostTable posts={posts} deletePost={deletePost} />;
+      return <PostTable posts={posts.filter(item => item.deleted === false)} deletePost={deletePost} />;
   };
 
   const postList = posttable();

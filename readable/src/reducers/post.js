@@ -57,7 +57,6 @@ export default (state = defaultState, action = {}) => {
 
     case 'SAVE_POST_REJECTED': {
       const data = action.payload.response.data;
-      // convert feathers error formatting to match client-side error formatting
       const {
         title,
         author,
@@ -132,7 +131,7 @@ export default (state = defaultState, action = {}) => {
       const id = action.payload.data.id;
       return {
         ...state,
-        posts: state.posts.filter(item => item.id !== id)
+        posts: state.posts.filter(item => item._id !== id)
       };
     }
 
