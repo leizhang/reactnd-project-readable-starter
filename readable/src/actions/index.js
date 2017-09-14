@@ -52,16 +52,20 @@ export function updatePost(post) {
   return dispatch => {
     return dispatch({
       type: types.UPDATE_POST,
-      payload: client.put(`${url}/${post._id}`, post),
+      payload: client.put(`${url}/${post.id}`, post),
     });
   };
 }
 
 export function deletePost(_id) {
   return dispatch => {
-    return dispatch({
+    dispatch({
       type: types.DELETE_POST,
       payload: client.delete(`${url}/${_id}`),
+    });
+    dispatch({
+      type: types.FETCH_POSTS,
+      payload: client.get(url),
     });
   };
 }
