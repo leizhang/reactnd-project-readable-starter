@@ -22,7 +22,8 @@ class App extends Component {
           >Add Post</NavLink></Button>
         </Button.Group>
         <Route exact path="/" component={PostListContainer} />
-        <Route path="/:category" component={PostListContainer} />
+        <Route path="/(:category)" component={PostListContainer} />
+{/*        <Route path="/category/:_category" component={PostListContainer} />*/}
         <Route path="/posts/new" component={PostFormContainer}/>
         <Route path="/posts/edit/:_id" component={PostFormContainer}/>
       </Container>
