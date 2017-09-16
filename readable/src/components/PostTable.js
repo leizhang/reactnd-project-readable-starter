@@ -52,7 +52,7 @@ class PostTable extends Component {
                               onClick={this.handleSort('voteScore')}>
               Score
             </Table.HeaderCell>
-            <Table.HeaderCell>Deleted?</Table.HeaderCell>
+            {/*<Table.HeaderCell>Deleted?</Table.HeaderCell>*/}
             <Table.HeaderCell sorted={column === 'timestamp' ? direction : null}
                               onClick={this.handleSort('timestamp')}>
               Timestamp
@@ -66,23 +66,23 @@ class PostTable extends Component {
             <Table.Row key={id}>
 {/*              <Table.Cell>{category}</Table.Cell>*/}
               <Table.Cell><Link
-                to={`/posts/view/${id}`
+                to={`/posts/edit/${id}`
                 }>
                 {title}
               </Link></Table.Cell>
               <Table.Cell>{author}</Table.Cell>
               <Table.Cell>{body}</Table.Cell>
               <Table.Cell>{voteScore}</Table.Cell>
-              <Table.Cell>{deleted ? 'Yes' : 'No'}</Table.Cell>
+              {/*<Table.Cell>{deleted ? 'Yes' : 'No'}</Table.Cell>*/}
               <Table.Cell>{timestamp}</Table.Cell>
               <Table.Cell>
                 <div className="ui two buttons">
-                  <Link
+{/*                  <Link
                     to={`/posts/edit/${id}`
                     }
                     className="ui basic button green">
                     Edit
-                  </Link>
+                  </Link>*/}
                   <Button basic color="red" onClick={() => onDelete(id)}>
                     Delete
                   </Button>
