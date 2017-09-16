@@ -15,7 +15,7 @@ class PostListPage extends Component {
       <div>
         <h1>List of Posts</h1>
 
-        <CategoryFilter categories={this.props.categories}/>
+        {/*<CategoryFilter categories={this.props.categories}/>*/}
         <PostList
           posts={this.props.posts}
           loading={this.props.loading}

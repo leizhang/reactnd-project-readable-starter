@@ -4,6 +4,7 @@ import uuid from 'uuid';
 
 const posts = '/posts';
 const category = '/category';
+const comments = '/comments';
 
 const client = axios.create({
   baseURL: 'http://localhost:5001',
@@ -39,6 +40,7 @@ export function newPost() {
   };
 }
 
+//Add a new post
 export function savePost(post) {
   post.id = uuid.v4();
   return dispatch => {
@@ -80,11 +82,31 @@ export function deletePost(_id) {
   };
 }
 
-export function setCategoryFilter(filter) {
+export function getComments(id) {
+  return dispatch => {
+    dispatch({
+      type: types.FETCH_COMMENTS,
+      payload: client.get(`${posts}/${id}/comments`),
+    });
+  }
+}
+
+//Add a new comment
+export function saveComment(comment) {
+  comment.id = uuid.v4();
   return dispatch => {
     return dispatch({
-      type: types.SET_CATEGORY_FILTER,
-      filter
+      type: types.UPDATE_POST,
+      payload: client.post(`${comments}`, comment),
+    });
+  };
+}
+
+export function updateComment(comment) {
+  return dispatch => {
+    return dispatch({
+      type: types.UPDATE_POST,
+      payload: client.put(`${comments}/${comment.id}`, comment),
     });
   };
 }
